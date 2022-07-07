@@ -1,0 +1,19 @@
+<h1>List</h1>
+
+<% @urls.each do |url| %>
+
+  <ul>
+    <li>id:<%= url.id %></li>
+    <li>Description: <%= url.description %></li>
+    <li>Long URL: <%= url.long_url %></li>
+    <li>Shorten URL:<%= link_to "#{@domain}/#{url.short_url}", url.short_url %></li>
+    <li>
+      <%= form_for url, url: url_path(url), method: :delete do |f| %>
+        <%= f.submit 'delete' %>
+      <% end %>
+    </li>
+  </ul>
+
+<% end %>
+
+<%= link_to 'Create List', new_url_path %>
