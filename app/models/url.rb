@@ -9,7 +9,7 @@ class Url < ApplicationRecord
 
   def generate_short_url
     while
-      @short = SecureRandom.base64(6)
+      @short = rand(36**8).to_s(36)
       break if not Url.exists?(short_url: @short)
     end
     self.short_url=@short
