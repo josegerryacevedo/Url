@@ -10,7 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_07_071604) do
+ActiveRecord::Schema.define(version: 2022_07_11_102232) do
+
+  create_table "city_municipalities", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.boolean "is_capital"
+    t.boolean "is_city"
+    t.boolean "is_municipality"
+    t.integer "district_id"
+    t.integer "province_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["district_id"], name: "index_city_municipalities_on_district_id"
+    t.index ["province_id"], name: "index_city_municipalities_on_province_id"
+  end
+
+  create_table "districts", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "region_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_districts_on_region_id"
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.integer "region_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_provinces_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "region_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "urls", force: :cascade do |t|
     t.string "description"
