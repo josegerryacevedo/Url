@@ -1,4 +1,4 @@
-<h1>List</h1>
+<h1>URL List</h1>
 
 
 <% @urls.each do |url| %>
@@ -8,7 +8,7 @@
     <li>Count: <%= url.count %></li>
     <li>Description: <%= url.description %></li>
     <li>Long URL: <%= url.long_url %></li>
-    <li>Shorten URL:<%= link_to "#{@domain}/#{url.short_url}", url.short_url %></li>
+    <li>Shorten URL:<%= link_to "#{@domain}/#{url.short_url}", url.short_url, target: '_self' %></li>
 
       <%= form_for url, url: url_path(url), method: :delete do |f| %>
         <%= f.submit 'Delete' %>
@@ -17,5 +17,5 @@
   </ul>
 <% end %>
 
-<%= link_to 'Create List', new_url_path %>
+<%= link_to 'Create URL', new_url_path %>
 <h3><%= link_to "Logout", destroy_user_session_path, :method => :delete %></h3>
