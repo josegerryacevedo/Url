@@ -1,22 +1,56 @@
+<div class="container">
 <h1>URL List</h1>
-
-
-<% @urls.each do |url| %>
-  <ul>
-    <li><%=url.user.email%></li>
-    <li>id:<%= url.id %></li>
-    <li>Count: <%= url.count %></li>
-    <li>Description: <%= url.description %></li>
-    <li>Long URL: <%= url.long_url %></li>
-    <li>Shorten URL:<%= link_to "#{@domain}/#{url.short_url}", url.short_url, target: '_self' %></li>
-
-    <li><%= link_to 'Edit', edit_url_path(url) %></li>
-
+<table class="table">
+  <thead class="text-center">
+  <tr>
+    <th scope="col">Email</th>
+    <th scope="col">ID</th>
+    <th scope="col">DESCRIPTION</th>
+    <th scope="col">LONG URL</th>
+    <th scope="col">SHORTEN URL</th>
+    <th scope="col">ACTION</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @urls.each do |url| %>
+  <tr>
+    <td><%=url.user.email%></td>
+    <td><%= url.id %></td>
+    <td><%= url.description %></td>
+    <td><%= url.long_url %></td>
+    <td><%= link_to "#{@domain}/#{url.short_url}", url.short_url, target: '_self' %></td>
+    <td><%= link_to 'Edit', edit_url_path(url), class: 'btn btn-primary' %></td>
+    <td>
       <%= form_for url, url: url_path(url), method: :delete do |f| %>
-        <%= f.submit 'Delete' %>
+        <%= f.submit 'Delete', class: 'btn btn-danger' %>
       <% end %>
-  </ul>
-<% end %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+  <%= paginate @urls %>
+  <%= link_to 'Create URL', new_url_path, class: 'btn btn-primary' %>
+</div>
 
-<%= link_to 'Create URL', new_url_path %>
-<h3><%= link_to "Logout", destroy_user_session_path, :method => :delete %></h3>
+<h3><%= link_to "LOGOUT", destroy_user_session_path, :method => :delete %></h3>
+
+
+<%# @urls.each do |url| %>
+<!--  <ul>-->
+<!--    <li><%#=url.user.email%></li>-->
+<!--    <li>id:<%#= url.id %></li>-->
+<!--    <li>Count: <%#= url.count %></li>-->
+<!--    <li>Description: <%#= url.description %></li>-->
+<!--    <li>Long URL: <%#= url.long_url %></li>-->
+<!--    <li>Shorten URL:<%#= link_to "#{@domain}/#{url.short_url}", url.short_url, target: '_self' %></li>-->
+
+<!--    <li><%#= link_to 'Edit', edit_url_path(url) %></li>-->
+
+      <%#= form_for url, url: url_path(url), method: :delete do |f| %>
+        <%#= f.submit 'Delete' %>
+      <%# end %>
+<!--  </ul>-->
+<%# end %>
+<!--<br>-->
+
