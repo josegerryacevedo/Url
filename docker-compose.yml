@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   db:
     image: mariadb:10.5.13
     restart: always
@@ -25,7 +26,16 @@ services:
       - bundle-volume:/usr/local/bundle
     environment:
       - REDIS_URL_CACHING=redis://redis:6379/0
-
+      
+  webpacker:
+    <<: *ror
+    environment:
+      - NODE_ENV=development
+      - RAILS_ENV=development
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    command: ./bin/webpack-dev-server
+    ports:
+      - 3035:3035
   app:
     <<: *ror
     ports:
@@ -45,3 +55,4 @@ services:
 #Volumes
 volumes:
   bundle-volume:
+
