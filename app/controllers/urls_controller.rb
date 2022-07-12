@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_url, only: :show
-  before_action :set_own_url, only: :destroy
+  before_action :set_own_url, only: [:edit, :destroy, :update]
 
   def index
     @urls = Url.all.includes(:user)
@@ -30,6 +30,16 @@ class UrlsController < ApplicationController
       redirect_to urls_path
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @url.update(url_params)
+      redirect_to urls_path
+    else
+      render :edit
     end
   end
 

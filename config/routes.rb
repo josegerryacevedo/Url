@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/urls' => 'urls#index'
   get '/:short_url' => 'urls#redirect'
 
-  resources :urls, only: [:index, :new, :create, :destroy]
+  resources :urls, only: [:index, :new, :create, :destroy, :edit, :update]
   get '*path', to: 'urls#not_found'
 
 end
