@@ -1,0 +1,10 @@
+<h1>Edit Post id: <%= @url.id %></h1>
+
+<%= form_for @url, url: url_path(@url), method: :patch do |f| %>
+    <%= f.label :Description %>
+    <%= f.text_field :description %>
+    <%= f.submit %>
+<% end %>
+
+<%= link_to 'Index', urls_path %>
+
