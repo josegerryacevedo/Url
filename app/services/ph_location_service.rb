@@ -34,15 +34,27 @@ class PhLocationService
   def get_city_municipalities
     response = RestClient.get("#{url}/cities-municipalities")
     city_municipalities = JSON.parse(response.body)
-    city_municipalities .each do |city_municipality|
+    city_municipalities.each do |city_municipality|
       if city_municipality['provinceCode']
         province = Province.find_by_code(city_municipality['provinceCode'])
-        CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], is_capital:city_municipality['isCapital'], is_city:city_municipality['isCity'], is_municipality: city_municipality['isMunicipality'], province: province)
+        CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], is_capital: city_municipality['isCapital'], is_city: city_municipality['isCity'], is_municipality: city_municipality['isMunicipality'], province: province)
       else
         district = District.find_by_code(city_municipality['districtCode'])
-        CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], is_capital:city_municipality['isCapital'], is_city:city_municipality['isCity'], is_municipality: city_municipality['isMunicipality'], district: district)
+        CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], is_capital: city_municipality['isCapital'], is_city: city_municipality['isCity'], is_municipality: city_municipality['isMunicipality'], district: district)
       end
     end
   end
 
+  def get_barangays
+    response = RestClient.get("#{url}/barangays")
+    barangays = JSON.parse(response.body)
+    barangays.each do |barangay|
+      if barangay['cityCode']
+        city_municipality = CityMunicipality.find_by_code(barangay['cityCode'])
+      else
+        city_municipality = CityMunicipality.find_by_code(barangay['municipalityCode'])
+      end
+      Barangay.find_or_create_by(code: barangay["code"], name: barangay["name"], city_municipality: city_municipality)
+    end
+  end
 end
