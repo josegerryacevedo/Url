@@ -1,4 +1,4 @@
-<div class="container">
+
 <h1>URL List</h1>
 <table class="table">
   <thead class="text-center">
@@ -19,7 +19,7 @@
     <td><%= url.description %></td>
     <td><%= url.long_url %></td>
     <td><%= link_to "#{@domain}/#{url.short_url}", url.short_url, target: '_self' %></td>
-    <td><%= link_to 'Edit', edit_url_path(url), class: 'btn btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_url_path(url), class: 'btn btn-info' %></td>
     <td>
       <%= form_for url, url: url_path(url), method: :delete do |f| %>
         <%= f.submit 'Delete', class: 'btn btn-danger' %>
@@ -31,9 +31,10 @@
 </table>
   <%= paginate @urls %>
   <%= link_to 'Create URL', new_url_path, class: 'btn btn-primary' %>
-</div>
 
-<h3><%= link_to "LOGOUT", destroy_user_session_path, :method => :delete %></h3>
+<h3><%= link_to "LOGOUT", destroy_user_session_path, :method => :delete, class: 'btn btn-dark' %></h3>
+
+
 
 
 <%# @urls.each do |url| %>
