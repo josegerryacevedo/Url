@@ -14,4 +14,5 @@ class Url < ApplicationRecord
     end
     self.short_url=@short
   end
+
 end
