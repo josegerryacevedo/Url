@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   get '/urls' => 'urls#index'
   get '/:short_url' => 'urls#redirect'
 
+  namespace :api do
+    resources :regions, only: :index
+  end
+
   resources :urls, only: [:index, :new, :create, :destroy, :edit, :update]
   get '*path', to: 'urls#not_found'
+
 
 end
 
