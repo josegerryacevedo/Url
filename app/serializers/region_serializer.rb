@@ -1,5 +1,5 @@
 class RegionSerializer < ActiveModel::Serializer
-  attributes :code, :name, :region_name, :count_of_provinces
+  attributes :code, :name, :region_name
 
   def code
     object.code
@@ -13,7 +13,4 @@ class RegionSerializer < ActiveModel::Serializer
     object.region_name
   end
 
-  def count_of_provinces
-    object.provinces.count
-  end
 end
