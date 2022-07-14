@@ -1,0 +1,20 @@
+<h1>PROVINCES LIST</h1>
+
+<table class="table table-bordered text-center">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Region</th>
+  </tr>
+  </thead>
+  <% @provinces.each do |province| %>
+    <tbody>
+    <tr>
+      <td><%= province.code %></td>
+      <td><%= province.name %></td>
+      <td><%= province.region_id %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
