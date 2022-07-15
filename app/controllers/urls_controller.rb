@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_url, only: :show
-  before_action :set_own_url, only: [:edit, :destroy, :update, :new]
+  before_action :set_own_url, only: [:edit, :destroy, :update]
 
   def index
     @urls = Url.includes(:user).page(params[:page]).per(5)
@@ -61,7 +61,7 @@ class UrlsController < ApplicationController
   private
 
   def url_params
-    params.require(:url).permit(:description, :long_url)
+    params.require(:url).permit(:description)
   end
 
   def set_url
