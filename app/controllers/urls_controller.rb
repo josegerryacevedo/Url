@@ -1,7 +1,7 @@
 class UrlsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_url, only: :show
-  before_action :set_own_url, only: [:edit, :destroy, :update]
+  before_action :set_own_url, only: [:edit, :destroy, :update, :new]
 
   def index
     @urls = Url.includes(:user).page(params[:page]).per(5)
