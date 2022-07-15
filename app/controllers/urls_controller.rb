@@ -18,7 +18,7 @@ class UrlsController < ApplicationController
     if @url.nil?
       not_found
     else
-      @url.increment!(:count, 1)
+      @url.increment!(:count)
       redirect_to @url.long_url
     end
   end
