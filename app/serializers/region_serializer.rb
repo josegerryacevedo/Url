@@ -1,5 +1,7 @@
 class RegionSerializer < ActiveModel::Serializer
   attributes :code, :name, :region_name
+  has_many :districts
+  has_many :provinces
 
   def code
     object.code

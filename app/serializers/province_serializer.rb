@@ -1,5 +1,6 @@
 class ProvinceSerializer < ActiveModel::Serializer
-  attributes :code, :name, :region
+  attributes :code, :name, :region_id
   belongs_to :region, serializer: RegionSerializer
+
 
 end
