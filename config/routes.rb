@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/:short_url' => 'urls#redirect'
 
   namespace :api do
-    resources :regions, :provinces, :districts, :city_municipalities, only: :index, defaults: { format: :json }
+    resources :regions, :provinces, :districts, :city_municipalities, :barangays, only: :index, defaults: { format: :json }
   end
 
   resources :urls, only: [:index, :new, :create, :destroy, :edit, :update]
